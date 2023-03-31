@@ -6,7 +6,22 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: ${({ theme }) => theme.colors.primary.main};
+  }
+
   button {
     cursor: pointer;
+  }
+
+  .rootContainer {
+    width: 100vw;
+    max-width: 1366px;
+    height: 100vh;
   }
 `

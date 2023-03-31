@@ -1,8 +1,9 @@
+import { SplideSlide as BaseSplideSlide } from "@splidejs/react-splide";
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
 
   display: flex;
   flex-direction: column;
@@ -13,13 +14,16 @@ export const NavBar = styled.nav`
   height: 80px;
 
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
 
   padding: 12px 12px;
 
   background: ${({ theme }) => theme.colors.tertiary.light};
 
   .select {
+    width: 5.7rem;
+    height: 2.5rem;
     border-radius: 8px;
 
     & + .select{
@@ -33,20 +37,20 @@ export const CarouselWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  padding: 30px 12px;
+  padding: 12px 0px 17px 0px;
 
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
 
-  background: ${({ theme }) => theme.colors.primary.light};
+  background: ${({ theme }) => theme.colors.danger.dark};
+`
+export const SplideSlide = styled(BaseSplideSlide)`
+  display: flex;
+  justify-content: center;
 
-  article {
-    margin-left: 12px;
-  }
-
-  :first-child {
-    background: black;
-  }
+  padding: 20px 0px;
+  padding: 20px 0px 12px 0px;
+  margin: 0px 0px 8px 0px;
 `
 export const MainContent = styled.main`
   width: 100%;

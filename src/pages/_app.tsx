@@ -9,7 +9,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <div className='rootContainer'>
+        <Component {...pageProps} />
+      </div>
     </ThemeProvider>
   )
 }
