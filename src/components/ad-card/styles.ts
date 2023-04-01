@@ -1,10 +1,8 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.article`
-  width: 300px;
   min-width: 300px;
-  height: 120px;
-  min-height: 120px;
+  min-height: 110px;
 
   display: flex;
   align-items: center;

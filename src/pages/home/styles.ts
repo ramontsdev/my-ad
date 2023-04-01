@@ -37,10 +37,9 @@ export const CarouselWrapper = styled.div`
   display: flex;
   align-items: center;
 
-  padding: 12px 0px 17px 0px;
+  padding: 12px 0px 0px 0px;
 
-  overflow-x: hidden;
-  overflow-y: hidden;
+  overflow: hidden;
 
   background: ${({ theme }) => theme.colors.danger.dark};
 `
@@ -48,20 +47,19 @@ export const SplideSlide = styled(BaseSplideSlide)`
   display: flex;
   justify-content: center;
 
-  padding: 20px 0px;
-  padding: 20px 0px 12px 0px;
-  margin: 0px 0px 8px 0px;
+  padding: 0px 0px 12px 0px;
 `
 export const MainContent = styled.main`
-  width: 100%;
-  height: 100%;
+  flex: 1;
+  background: ${({ theme }) => theme.colors.danger.main};
 
   display: flex;
   flex-direction: column;
   flex-flow: row wrap;
   justify-content: center;
+  align-items: center;
 
-  padding: 12px 12px 12px 0px;
+  padding: 12px 12px 0px 0px;
 
   article {
     margin-left: 12px;
@@ -74,6 +72,10 @@ export const MainContent = styled.main`
 
   @media (max-width: 480px) {
     justify-content: center;
+
+    article {
+      margin-left: 12px;
+    }
   }
 
   @media (max-width: 280px) {
@@ -81,4 +83,10 @@ export const MainContent = styled.main`
       margin-left: 40px;
     }
   }
+`
+export const Footer = styled.footer`
+  width: 100%;
+  height: 65px;
+
+  background: ${({ theme }) => theme.colors.secondary.light};
 `
