@@ -1,11 +1,12 @@
-'use client'
-
-import { Autoplay, Navigation, Pagination } from 'swiper';
-
 import 'swiper/css';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import { Autoplay, Navigation, Pagination } from 'swiper';
+
+
+import NextImage from 'next/image';
+import { useEffect, useState } from 'react';
 import {
   Container, DescriptionWrapper,
   PhotosWrapper, Swiper, SwiperSlide
@@ -19,7 +20,43 @@ const imagesPath = [
   "https://images.unsplash.com/photo-1680159035588-64efc5d8456d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=712&q=80",
 ]
 
+type ImageProps = {
+  imageUrl: string;
+  width: number;
+  height: number;
+  resizeHeight: number;
+}
 const Ad = () => {
+  const [images, setImages] = useState<ImageProps[]>([])
+
+  useEffect(() => {
+    function getImgSize(imageURL: string): Promise<ImageProps> {
+      const newImg = new Image();
+      return new Promise((res, rej) => {
+        newImg.onload = function () {
+          res({
+            imageUrl: imageURL,
+            width: newImg.naturalWidth,
+            height: newImg.naturalHeight,
+            resizeHeight: newImg.naturalHeight * (320 / newImg.naturalWidth)
+          });
+        }
+        newImg.src = imageURL;
+      });
+    }
+
+    const imagesConfig: ImageProps[] = []
+    async function load() {
+      for (const imagePath of imagesPath) {
+        const resolution = await getImgSize(imagePath)
+        imagesConfig.push(resolution)
+      }
+
+      setImages([...imagesConfig])
+    }
+
+    load()
+  }, [])
 
   return (
     <Container>
@@ -33,14 +70,16 @@ const Ad = () => {
           }}
           modules={[Navigation, Pagination, Autoplay]}
         >
-          {imagesPath.map((imagePath) => {
+          {images.map((image) => {
+            console.log(image.height)
             return (
-              <SwiperSlide key={imagePath}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={imagePath}
-                  style={{ width: '100%' }}
-                  alt="logo"
+              <SwiperSlide key={image.imageUrl}>
+                <NextImage
+                  loader={() => image.imageUrl}
+                  src={image.imageUrl}
+                  width={320}
+                  height={image.resizeHeight}
+                  alt=''
                 />
               </SwiperSlide>
             )
