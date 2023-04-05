@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 
 import { AdCard } from "@/components/ad-card"
 import { UserAvatar } from '@/components/user-avatar'
+import Router from 'next/router'
 import { CarouselWrapper, Container, Footer, MainContent, NavBar, SplideSlide } from "./styles"
 
 const allAds = [
@@ -16,7 +17,7 @@ const allAds = [
   {
     id: 'uyb128',
     title: 'Anúncio 2',
-    description: 'Descrição 3'
+    description: 'Descrição 2'
   },
   {
     id: 'poḱrjoip3',
@@ -111,7 +112,11 @@ const HomePage = () => {
         >
           {allAds.slice(0, 7).map((element, index) => (
             <SplideSlide key={index}>
-              <AdCard description={element.description} />
+              <AdCard
+                key={index}
+                onClick={() => Router.push(`/ads/ad/${element.description}`)}
+                description={element.description}
+              />
             </SplideSlide>
           ))}
         </Splide>
@@ -119,7 +124,11 @@ const HomePage = () => {
 
       <MainContent>
         {allAds.map((element, index) => (
-          <AdCard key={index} description={element.description} />
+          <AdCard
+            key={index}
+            onClick={() => Router.push(`/ads/ad/${element.description}`)}
+            description={element.description}
+          />
         ))}
       </MainContent>
       <Footer />

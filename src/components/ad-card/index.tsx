@@ -2,11 +2,13 @@ import { BackgroundBase, DescriptionWrapper, ImageWrapper, Wrapper } from "./sty
 
 type Props = {
   description?: string;
+  onClick?: () => void
 }
 
-export const AdCard = ({ description }: Props) => {
+export const AdCard = ({ description, onClick }: Props) => {
+
   return (
-    <Wrapper className="card-item">
+    <Wrapper onClick={onClick}>
       <BackgroundBase />
 
       <ImageWrapper>

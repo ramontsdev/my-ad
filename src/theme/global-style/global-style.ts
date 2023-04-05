@@ -22,6 +22,5 @@ export const GlobalStyle = createGlobalStyle`
   .rootContainer {
     width: 100vw;
     max-width: 1366px;
-    height: 100vh;
   }
 `
